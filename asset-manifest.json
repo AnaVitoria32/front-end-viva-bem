@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/front-end-viva-bem/static/css/main.84c017e6.css",
-    "main.js": "/front-end-viva-bem/static/js/main.ba50d210.js",
+    "main.js": "/front-end-viva-bem/static/js/main.b8291678.js",
     "static/js/453.87a96dd3.chunk.js": "/front-end-viva-bem/static/js/453.87a96dd3.chunk.js",
     "static/media/bootstrap-icons.woff?": "/front-end-viva-bem/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/bootstrap-icons.woff2?": "/front-end-viva-bem/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/front-end-viva-bem/index.html",
     "main.84c017e6.css.map": "/front-end-viva-bem/static/css/main.84c017e6.css.map",
-    "main.ba50d210.js.map": "/front-end-viva-bem/static/js/main.ba50d210.js.map",
+    "main.b8291678.js.map": "/front-end-viva-bem/static/js/main.b8291678.js.map",
     "453.87a96dd3.chunk.js.map": "/front-end-viva-bem/static/js/453.87a96dd3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.84c017e6.css",
-    "static/js/main.ba50d210.js"
+    "static/js/main.b8291678.js"
   ]
 }
