@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/login";
 import Cadastro from "./pages/Cadastro";
@@ -12,6 +12,9 @@ import Patients from "./pages/Patients";
 import Dietas from "./pages/Dietas";
 import NovaDieta from "./pages/NovaDieta";
 
+// Pegando a URL do backend do .env
+const API_URL = process.env.REACT_APP_API_URL;
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -21,7 +24,7 @@ function App() {
   useEffect(() => {
     async function loadCsrf() {
       try {
-        const res = await fetch("http://localhost:8080/auth/csrf-token", {
+        const res = await fetch(`${API_URL}/auth/csrf-token`, {
           credentials: "include", // necessário para receber o cookie de CSRF
         });
 
@@ -53,9 +56,8 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-
         {/* LOGIN */}
         <Route
           path="/"
@@ -67,7 +69,7 @@ function App() {
                 <Navigate to="/dashboard-paciente" />
               )
             ) : (
-              <Login setUser={setUser} />
+              <Login setUser={setUser} apiUrl={API_URL} />
             )
           }
         />
@@ -75,25 +77,29 @@ function App() {
         {/* CADASTRO */}
         <Route
           path="/cadastro"
-          element={<Cadastro setUser={setUser} />}
+          element={<Cadastro setUser={setUser} apiUrl={API_URL} />}
         />
 
         {/* DASHBOARD NUTRICIONISTA */}
         <Route
           path="/dashboard-nutri"
           element={
-            user?.role === "NUTRITIONIST"
-              ? <NutriDashboard user={user} onLogout={handleLogout} />
-              : <Navigate to="/" />
+            user?.role === "NUTRITIONIST" ? (
+              <NutriDashboard user={user} onLogout={handleLogout} apiUrl={API_URL} />
+            ) : (
+              <Navigate to="/" />
+            )
           }
         />
 
         <Route
           path="/pacientes"
           element={
-            user?.role === "NUTRITIONIST"
-              ? <Patients user={user} onLogout={handleLogout} />
-              : <Navigate to="/" />
+            user?.role === "NUTRITIONIST" ? (
+              <Patients user={user} onLogout={handleLogout} apiUrl={API_URL} />
+            ) : (
+              <Navigate to="/" />
+            )
           }
         />
 
@@ -101,9 +107,11 @@ function App() {
         <Route
           path="/criar-plano"
           element={
-            user?.role === "NUTRITIONIST"
-              ? <CreatePlan user={user} onLogout={handleLogout} />
-              : <Navigate to="/" />
+            user?.role === "NUTRITIONIST" ? (
+              <CreatePlan user={user} onLogout={handleLogout} apiUrl={API_URL} />
+            ) : (
+              <Navigate to="/" />
+            )
           }
         />
 
@@ -111,18 +119,22 @@ function App() {
         <Route
           path="/dietas"
           element={
-            user?.role === "NUTRITIONIST"
-              ? <Dietas user={user} onLogout={handleLogout} />
-              : <Navigate to="/" />
+            user?.role === "NUTRITIONIST" ? (
+              <Dietas user={user} onLogout={handleLogout} apiUrl={API_URL} />
+            ) : (
+              <Navigate to="/" />
+            )
           }
         />
 
         <Route
           path="/dietas/nova"
           element={
-            user?.role === "NUTRITIONIST"
-              ? <NovaDieta user={user} onLogout={handleLogout} />
-              : <Navigate to="/" />
+            user?.role === "NUTRITIONIST" ? (
+              <NovaDieta user={user} onLogout={handleLogout} apiUrl={API_URL} />
+            ) : (
+              <Navigate to="/" />
+            )
           }
         />
 
@@ -130,15 +142,17 @@ function App() {
         <Route
           path="/dashboard-paciente"
           element={
-            user?.role === "PATIENT"
-              ? <PacienteDashboard user={user} onLogout={handleLogout} />
-              : <Navigate to="/" />
+            user?.role === "PATIENT" ? (
+              <PacienteDashboard user={user} onLogout={handleLogout} apiUrl={API_URL} />
+            ) : (
+              <Navigate to="/" />
+            )
           }
         />
-
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
 export default App;
+

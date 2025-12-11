@@ -17,7 +17,7 @@ export default function Login({ setUser }) {
     setErro("");
 
     try {
-      const user = await apiPost("/login", { email, senha });
+      const user = await apiPost("#/login", { email, senha });
 
       if (!user || !user.email) {
         throw new Error("Login inválido");
@@ -29,9 +29,9 @@ export default function Login({ setUser }) {
 
       // Redirecionar pelo tipo
       if (user.role === "NUTRITIONIST") {
-        navigate("/dashboard-nutri");
+        navigate("#/dashboard-nutri");
       } else if (user.role === "PATIENT") {
-        navigate("/dashboard-paciente");
+        navigate("#/dashboard-paciente");
       } else {
         setErro("Tipo de usuário desconhecido.");
       }
@@ -96,7 +96,7 @@ export default function Login({ setUser }) {
           
           <button
             className="btn btn-link mt-3"
-            onClick={() => navigate("/cadastro")}
+            onClick={() => navigate("#/cadastro")}
           >
             Não tem conta? Cadastre-se
           </button>
